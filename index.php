@@ -17,7 +17,7 @@
         <div class="card px-1 py-4">
             <div class="card-body-form">
                 <h1>Se cadstre no sistema</h1>
-                <form class="row g-3" method="POST">
+                <form class="row g-3" method="POST" action="php/receber_dados.php">
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
                         <label for="floatingInput">Email</label>
@@ -30,15 +30,6 @@
                         <button name="enviar" type="submit" class="btn btn-primary" value="click">Enviar</button>
                     </div>
                 </form>
-                <?php 
-                    include "php/receber_dados.php";
-                    $click = filter_input(INPUT_POST, "enviar", FILTER_SANITIZE_STRING);
-                    if($click){
-                        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-                        $senha = filter_input(INPUT_POST, "senha", FILTER_SANITIZE_STRING);
-                        enviar_banco($mysqli,$email,$senha);
-                    }
-                ?>
             </div>
         <div class="card-body-table">
             <table class="table">

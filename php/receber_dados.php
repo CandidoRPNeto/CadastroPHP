@@ -1,11 +1,16 @@
 <?php
-$ultimo_email = "";
+require_once "conectar_banco.php";
 
-function enviar_banco($mysqli,$email, $senha){
-    global $ultimo_email;
-    if ($ultimo_email != $email){
-        $ultimo_email = $email;
-        $inserir = "INSERT INTO cadastros (Email, Senha) VALUES ('$email', '$senha')";
-        $result = mysqli_query($mysqli, $inserir);
-    }
+$email = $_POST["email"];
+$senha = $_POST["senha"];
+
+function enviar_banco(){
+    global $email, $senha, $mysqli;
+    $ultimo_email = $email;
+    $inserir = "INSERT INTO cadastros (Email, Senha) VALUES ('$email', '$senha')";
+    $result = mysqli_query($mysqli, $inserir);
+    
+    header("Location: /teste04/index.php");
 }
+
+enviar_banco();
